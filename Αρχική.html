@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="site for Nail studio"
+    <meta name="keywords" content="mary lila,nails,Θεσσαλονίκη,Αμπελόκηποι,μανικιούρ,πεντικιούρ">
+    <title>Mary Lila</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="images/mary_lila_cropped_logo.png" type="image/png">
+<link rel="stylesheet" href="style.css">
+</head>
+<script>
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.getElementById('nav-links');
+  const overlay = document.getElementById('menu-overlay');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+    overlay.classList.toggle('show');
+  });
+  overlay.addEventListener('click', () => {
+    navLinks.classList.remove('show');
+    overlay.classList.remove('show');
+  });
+</script>
+<body>
+    <header>
+        <div class="header-container"></div>
+       <div class="logo">
+<img src="images\mary_lila_cropped_logo.png" width="250" alt="logo" >
+</div>
+<div class="menu-toggle" id="mobile-menu">
+    &#9776;
+</div>
+<h1 class="site-title"> Mary lila Nails</h1>
+<nav class="nav-links">
+     <a href="Αρχική.html">Αρχική</a>
+     <a href="Υπηρεσίες.html">Υπηρεσίες</a>
+     <a href="Επικοινωνία.html">Επικοινωνία</a>
+     </nav>
+     <div class="menu-overlay" id="menu-overlay"></div>
+     </header>
+     <main>
+        <section class="intro">
+    
+     
+     <p class="fade-in-text"> Η ομορφιά ξεκινά από τις λεπτομέρειες. Στο Mary Lila, στη Θεσσαλονίκη Λεωφόρος 28ης Οκτωβρίου 84 (Απέναντι από την πλατεία Εμμανουήλ Παππά), προσφέρουμε μοναδικές υπηρεσίες περιποίησης νυχιών με έμφαση στην ποιότητα, την αισθητική και τη φροντίδα. Εδώ, κάθε επίσκεψη γίνεται μια μικρή απόδραση χαλάρωσης και πολυτέλειας!
+     </p>
+     <a href="https://www.instagram.com/mary_lilaa/" target="-blank" class="btn">Κλείσε το ραντεβού σου!</a>
+      <br>
+    
+     <a href="https://www.instagram.com/mary_lilaa/" ></a>
+    </section>
+    </main>
+    <section class="photo-gallery">
+  <h2>Φωτογραφίες</h2>
+
+  <div class="gallery-controls">
+    <label class="btn" for="file-input">Προσθήκη εικόνων</label>
+    <input id="file-input" type="file" accept="image/*" multiple style="display:none">
+  </div>
+
+  <div id="gallery" class="gallery"></div>
+  <div id="empty" class="empty">Δεν υπάρχουν ακόμα φωτογραφίες.</div>
+
+  <div id="lightbox" class="lightbox">
+    <button class="close" aria-label="Κλείσιμο">×</button>
+    <img src="" alt="">
+  </div>
+</section>
+  <script> 
+  const gallery = document.getElementById("gallery");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = lightbox.querySelector("img");
+const closeBtn = lightbox.querySelector(".close");
+
+gallery.querySelectorAll("img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightboxImg.src = img.src;
+    lightbox.classList.add("show");
+  });
+});
+
+closeBtn.addEventListener("click", () => lightbox.classList.remove("show"));
+lightbox.addEventListener("click", (e) => {
+  if(e.target === lightbox) lightbox.classList.remove("show");
+});
+</script>
+<footer>
+  <p>&copy; 2025 Mary Lila Nails - All rights reserved</p>
+
+  <div class="accessibility">
+    <div class="icon-wrapper">
+    <img 
+      src="images/International_Symbol_of_Access.svg.png"
+      alt="Προσβάσιμο σε ΑμεΑ" 
+      width="40" 
+      height="40">
+    </div>
+    <p>Ο χώρος μας είναι πλήρως προσβάσιμος σε άτομα με αναπηρία (ΑμεΑ).</p>
+  </section>
+</footer>
+
+</body>
+</html>
