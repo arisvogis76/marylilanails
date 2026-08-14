@@ -554,22 +554,28 @@ footer {
    ========================================== */
 @media (max-width: 768px) {
     header {
-        padding: 15px 20px;
-        position: relative; /* Απαραίτητο για να σταθεροποιήσουμε το μενού */
-        justify-content: center; /* Κεντράρει απόλυτα το λογότυπο */
+        padding: 15px 10px; /* Μικραίνουμε κι άλλο το padding για να εκμεταλλευτούμε το χώρο */
+        position: relative; 
+        justify-content: center; 
     }
     
     .menu-toggle {
         display: block;
-        position: absolute; /* Καρφιτσώνει το μενού... */
-        right: 25px; /* ...στα δεξιά της οθόνης */
+        position: absolute; 
+        right: 15px; /* Καρφωμένο τέρμα δεξιά (αφήνουμε 15px για να μην "κόβεται" από θήκες/κυρτές οθόνες) */
         top: 50%;
-        transform: translateY(-50%); /* Το διατηρεί ακριβώς στη μέση του ύψους */
+        transform: translateY(-50%); 
         margin: 0;
+        padding: 10px; /* Δίνουμε αόρατο χώρο για να πατιέται πιο εύκολα με το δάχτυλο */
+        /* Προσθέτουμε transition για το animation του κουμπιού */
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), color 0.3s ease; 
+        z-index: 102; /* Να είναι πάντα πάνω από το μενού */
     }
 
-    .menu-toggle:hover {
-        transform: translateY(-50%) scale(1.1);
+    /* Το animation του κουμπιού όταν το πατάς (ή περνάς το ποντίκι) */
+    .menu-toggle:active, .menu-toggle:hover {
+        transform: translateY(-50%) rotate(90deg) scale(0.85);
+        color: #d63384; /* Αλλάζει ελαφρώς χρώμα */
     }
     
     .nav-links {
@@ -582,7 +588,8 @@ footer {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        transition: right 0.3s ease;
+        /* Πιο "κινηματογραφικό" και γλυκό animation για το άνοιγμα του μενού */
+        transition: right 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         z-index: 101;
         padding-top: 0;
         box-shadow: -10px 0 35px rgba(0, 0, 0, 0.18);
@@ -599,12 +606,10 @@ footer {
         color: #4b2b4a;
     }
     
-    /* Κρύβουμε τον τίτλο στο κινητό */
     .site-title {
         display: none; 
     }
     
-    /* Τέλεια στοίχιση για το λογότυπο */
     .logo {
         margin: 0;
         padding: 0;
@@ -614,7 +619,7 @@ footer {
 
     .logo img {
         padding-left: 0;
-        width: 130px; /* Ελαφρώς πιο κομψό μέγεθος για οθόνη κινητού */
+        width: 130px; 
         margin: 0 auto;
     }
 }
