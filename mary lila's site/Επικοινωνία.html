@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary Lila - Επικοινωνία</title>
+    <link rel="icon" href="images/mary_lila_cropped_logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/mary_lila_cropped_logo.png" width="250" alt="Mary Lila logo">
+        </div>
+        <h1 class="site-title">Mary Lila Nails</h1>
+        <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+        <nav class="nav-links" id="nav-links">
+            <a href="Αρχική.html">Αρχική</a>
+            <a href="Υπηρεσίες.html">Υπηρεσίες</a>
+            <a href="Επικοινωνία.html" class="active">Επικοινωνία</a>
+        </nav>
+        <div class="menu-overlay" id="menu-overlay"></div>
+    </header>
+
+    <main>
+        <div class="social-buttons reveal-item">
+            <a href="https://www.instagram.com/mary_lilaa/" target="_blank" class="social-btn instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/mary.lila2?locale=el_GR" target="_blank" class="social-btn facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@mary_lilaa" target="_blank" class="social-btn tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+
+        <section id="contact" class="reveal-item">
+            <h1>Επικοινωνία</h1>
+            <div class="contact-info">
+                <p><strong>📍 Διεύθυνση:</strong> Λεωφ. 28ης Οκτωβρίου 84, Αμπελόκηποι 561 23</p>
+                <p><strong>📞 Τηλέφωνο:</strong> <a href="tel:+306975636623">+30 6975 636 623</a></p>
+                <p><strong>📧 Email:</strong> <a href="mailto:info@marylila.gr">info@marylila.gr</a></p>
+                <p><strong>🕒 Ώρες λειτουργίας:</strong> Δευτέρα – Σάββατο, 09:00 – 20:00</p>
+            </div>
+
+            <div class="map-container reveal-item">
+                <iframe src="https://www.google.com/maps?q=28is+Oktovriou+84+Ampelokipoi+56123&output=embed" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div style="text-align:center; margin-top:20px;">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=%CE%9B%CE%B5%CF%89%CF%86.+28%CE%B7%CF%82+%CE%9F%CE%BA%CF%84%CF%89%CE%B2%CF%81%CE%AF%CE%BF%CF%85+84%2C+%CE%91%CE%BC%CF%80%CE%B5%CE%BB%CF%8C%CE%BA%CE%B7%CF%80%CE%BF%CE%B9+56123" target="_blank" class="btn">📍 Δες οδηγίες στο Google Maps</a>
+            </div>
+        </section> 
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mary Lila Nails - All rights reserved</p>
+        <p class="credits">Designed & Developed by Aris Vogiatzis</p>
+        <div class="espa-banner">
+            <p>Πρόγραμμα Επιχειρηματικότητας για ανέργους 30-59 ετών με έμφαση στις γυναίκες</p>
+            <img src="images/banner.jpg" alt="ΕΣΠΑ">
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+            const overlay = document.getElementById('menu-overlay');
+
+            if(menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('show');
+                    overlay.classList.toggle('show');
+                });
+                overlay.addEventListener('click', () => {
+                    navLinks.classList.remove('show');
+                    overlay.classList.remove('show');
+                });
+            }
+
+            const revealElements = document.querySelectorAll('.reveal-item');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        });
+    </script>
+</body>
+</html>

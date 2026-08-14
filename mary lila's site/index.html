@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="el_GR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="site for Nail studio">
+    <meta name="keywords" content="mary lila,nails,Θεσσαλονίκη,Αμπελόκηποι,μανικιούρ,πεντικιούρ">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">    
+    <title>Mary Lila</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Dancing+Script:wght@500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Montserrat:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/mary_lila_cropped_logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container"></div>
+        <div class="logo">
+            <img src="images/mary_lila_cropped_logo.png" width="250" alt="logo">
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            &#9776;
+        </div>
+        <h1 class="site-title">Mary Lila Nails</h1>
+        <nav class="nav-links" id="nav-links">
+            <a href="Αρχική.html">Αρχική</a>
+            <a href="Υπηρεσίες.html">Υπηρεσίες</a>
+            <a href="Επικοινωνία.html">Επικοινωνία</a>
+        </nav>
+        <div class="menu-overlay" id="menu-overlay"></div>
+    </header>
+
+    <main>
+        <section class="intro">
+            <p>
+                Η ομορφιά ξεκινά από τις λεπτομέρειες. Στο Mary Lila, στη Θεσσαλονίκη (Λεωφόρος 28ης Οκτωβρίου 84), προσφέρουμε μοναδικές υπηρεσίες περιποίησης νυχιών με έμφαση στην ποιότητα, την αισθητική και τη φροντίδα.
+            </p>
+            <a href="https://www.instagram.com/mary_lilaa/" target="_blank" class="btn">Κλείσε το ραντεβού σου!</a>
+        </section>
+
+        <section class="photo-gallery reveal-item">
+            <h2>Φωτογραφίες</h2>
+            <div class="slider-wrapper">
+                <button class="nav-btn prev" aria-label="Προηγούμενη φωτογραφία">&#10094;</button>
+                <div class="gallery-slider">
+                    <img src="images/gallery/nail-1.jpg" class="slider-img active" alt="Μανικιούρ 1">
+                    <img src="images/gallery/nail-2.jpg" class="slider-img" alt="Μανικιούρ 2">
+                    <img src="images/gallery/nail-3.jpg" class="slider-img" alt="Μανικιούρ 3">
+                </div>
+                <button class="nav-btn next" aria-label="Επόμενη φωτογραφία">&#10095;</button>
+            </div>
+            <div id="empty" class="empty" style="display: none;">Δεν υπάρχουν ακόμα φωτογραφίες.</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mary Lila Nails - All rights reserved</p>
+        <p class="credits">Designed & Developed by Aris Vogiatzis</p>
+        <div class="espa-banner">
+            <p>Πρόγραμμα Επιχειρηματικότητας για ανέργους 30-59 ετών με έμφαση στις γυναίκες</p>
+            <img src="images/banner.jpg" alt="ΕΣΠΑ 2021-2027">
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Mobile Menu Logic
+            const menuToggle = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+            const overlay = document.getElementById('menu-overlay');
+
+            if(menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('show');
+                    overlay.classList.toggle('show');
+                });
+                overlay.addEventListener('click', () => {
+                    navLinks.classList.remove('show');
+                    overlay.classList.remove('show');
+                });
+            }
+
+            // 2. Scroll Reveal Animations Logic
+            const revealElements = document.querySelectorAll('.reveal-item');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 3. Slider Logic & Dynamic Background Blur
+            const images = document.querySelectorAll('.gallery-slider .slider-img');
+            const prevBtn = document.querySelector('.nav-btn.prev');
+            const nextBtn = document.querySelector('.nav-btn.next');
+            let currentIndex = 0;
+
+            if (images.length > 0) {
+                // Αρχικοποίηση των θολών background για κάθε εικόνα
+                images.forEach(img => {
+                    img.style.setProperty('--bg-image', `url(${img.src})`);
+                });
+
+                function showImage(index) {
+                    if (index < 0) currentIndex = images.length - 1;
+                    else if (index >= images.length) currentIndex = 0;
+                    else currentIndex = index;
+                    
+                    images.forEach(img => img.classList.remove('active'));
+                    images[currentIndex].classList.add('active');
+                }
+                nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
+                prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary Lila - Υπηρεσίες</title>
+    <link rel="icon" href="images/mary_lila_cropped_logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/mary_lila_cropped_logo.png" width="250" alt="Mary Lila logo">
+        </div>
+        <h1 class="site-title">Mary Lila Nails</h1>
+        <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+        <nav class="nav-links" id="nav-links">
+            <a href="Αρχική.html">Αρχική</a>
+            <a href="Υπηρεσίες.html" class="active">Υπηρεσίες</a>
+            <a href="Επικοινωνία.html">Επικοινωνία</a>
+        </nav>
+        <div class="menu-overlay" id="menu-overlay"></div>
+    </header>
+
+    <main>
+        <section class="services reveal-item">
+            <h2>Οι Υπηρεσίες Μας</h2>
+            <p>
+                Στο Mary Lila Nails, προσφέρουμε εξειδικευμένες υπηρεσίες περιποίησης νυχιών: 
+                μανικιούρ, πεντικιούρ, ημιμόνιμο, τεχνητά νύχια και μοναδικά σχέδια nail art που 
+                συνδυάζουν φινέτσα και δημιουργικότητα.
+            </p>
+            
+            <div class="price-list reveal-item">
+                <h3>Τιμοκατάλογος</h3>
+                
+                <div class="price-item">
+                    <div class="service-header">
+                        <div class="service-name">✨ Ενισχυμένο ημιμόνιμο</div>
+                        <div class="service-price">15€</div>
+                    </div>
+                    <div class="service-description">Μακράς διάρκειας βερνίκι που διατηρεί την λάμψη και το χρώμα άθικτα.</div>
+                </div>
+
+                <div class="price-item">
+                    <div class="service-header">
+                        <div class="service-name">💅 Τζελ φυσική ενίσχυση/συντήρηση <span class="price-note">από</span></div>
+                        <div class="service-price">22€</div>
+                    </div>
+                    <div class="service-description">Ενίσχυση των φυσικών νυχιών με τζελ για περισσότερη αντοχή.</div>
+                </div>
+
+                <div class="price-item">
+                    <div class="service-header">
+                        <div class="service-name">🌸 Τζελ αρχικό <span class="price-note">από</span></div>
+                        <div class="service-price">27€</div>
+                    </div>
+                    <div class="service-description">Δημιουργία βασικού πλαισίου με τζελ για την έναρξη της περιποίησης.</div>
+                </div>
+
+                <div class="price-item">
+                    <div class="service-header">
+                        <div class="service-name">🦶 Πεντικούρ καλλωπιστικό <span class="price-note">από</span></div>
+                        <div class="service-price">15€</div>
+                    </div>
+                    <div class="service-description">Πλήρης περιποίηση των ποδιών που συνδυάζει υγεία και αισθητική.</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 35px;">
+                <a href="https://www.instagram.com/mary_lilaa/" target="_blank" class="btn">🌟 Δες περισσότερα σχέδια στο Instagram!</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mary Lila Nails - All rights reserved</p>
+        <p class="credits">Designed & Developed by Aris Vogiatzis</p>
+        <div class="espa-banner">
+            <p>Πρόγραμμα Επιχειρηματικότητας για ανέργους 30-59 ετών με έμφαση στις γυναίκες</p>
+            <img src="images/banner.jpg" alt="ΕΣΠΑ 2021-2027">
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+            const overlay = document.getElementById('menu-overlay');
+
+            if(menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('show');
+                    overlay.classList.toggle('show');
+                });
+                overlay.addEventListener('click', () => {
+                    navLinks.classList.remove('show');
+                    overlay.classList.remove('show');
+                });
+            }
+
+            const revealElements = document.querySelectorAll('.reveal-item');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mary Lila Nails - Gallery</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px; }
+    .gallery img { width: 200px; height: auto; cursor: pointer; border-radius: 8px; transition: transform 0.2s; }
+    .gallery img:hover { transform: scale(1.05); }
+
+    .lightbox { 
+      display: none; 
+      position: fixed; 
+      top:0; left:0; width:100%; height:100%; 
+      background: rgba(0,0,0,0.8); 
+      justify-content: center; 
+      align-items: center; 
+      z-index: 1000; 
+    }
+    .lightbox.show { display: flex; }
+    .lightbox img { max-width: 90%; max-height: 80%; border-radius: 10px; }
+    .lightbox .close { 
+      position: absolute; top: 20px; right: 30px; 
+      font-size: 40px; color: white; background: none; border: none; cursor: pointer; 
+    }
+  </style>
+</head>
+<body>
+
+<h1 style="text-align:center; margin-top:20px;">Φωτογραφίες Mary Lila Nails</h1>
+
+<div class="gallery" id="gallery"></div>
+
+<div class="lightbox" id="lightbox">
+  <button class="close" aria-label="Κλείσιμο">×</button>
+  <img src="" alt="Gallery Image">
+</div>
+
+<script>
+  // Εδώ βάζεις τις εικόνες που έχεις στον φάκελο photo-gallery
+  const imageFiles = ["1.jpg", "2.jpg", "3.jpg"]; // πρόσθεσε όλα τα αρχεία εδώ
+  const imageFolder = "photo-gallery/"; // φάκελος με τις εικόνες
+
+  const gallery = document.getElementById("gallery");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = lightbox.querySelector("img");
+  const closeBtn = lightbox.querySelector(".close");
+
+  // Δημιουργούμε τις εικόνες στη gallery
+  imageFiles.forEach(file => {
+    const img = document.createElement("img");
+    img.src = imageFolder + file;
+    img.alt = `Photo ${file}`;
+    gallery.appendChild(img);
+
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add("show");
+    });
+  });
+
+  // Κλείσιμο lightbox
+  closeBtn.addEventListener("click", () => lightbox.classList.remove("show"));
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) lightbox.classList.remove("show");
+  });
+</script>
+
+</body>
+</html>
