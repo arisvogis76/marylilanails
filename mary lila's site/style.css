@@ -562,17 +562,15 @@ footer {
     .menu-toggle {
         display: block;
         position: absolute; 
-        right: 0; /* Κολλημένο ακριβώς τέρμα δεξιά */
+        right: 0;
         top: 50%;
         transform: translateY(-50%); 
         margin: 0;
-        padding: 10px 5px 10px 15px; /* Το 5px δεξιά εξασφαλίζει να μην κόβεται στις στρογγυλεμένες οθόνες των νέων κινητών, ενώ φαίνεται κολλητό */
-        /* Προσθέτουμε transition για το animation του κουμπιού */
+        padding: 10px 5px 10px 15px;
         transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), color 0.3s ease; 
         z-index: 102; 
     }
 
-    /* Το animation του κουμπιού όταν το πατάς (ή περνάς το ποντίκι) */
     .menu-toggle:active, .menu-toggle:hover {
         transform: translateY(-50%) rotate(90deg) scale(0.85);
         color: #d63384; 
@@ -584,26 +582,37 @@ footer {
         right: -100%;
         background: linear-gradient(160deg, #fff5f9 0%, #ffe0ee 100%);
         height: 100vh;
-        width: 280px;
+        max-height: 100vh; /* Ακυρώνει το max-height: 300px του desktop για να πιάνει όλη την οθόνη */
+        width: 260px; /* Λίγο πιο φαρδύ για να δείχνει πιο ωραίο σαν συρτάρι */
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        /* Πιο "κινηματογραφικό" και γλυκό animation για το άνοιγμα του μενού */
+        justify-content: flex-start; /* Ξεκινάνε τα μενού από πάνω, όχι από τη μέση */
+        align-items: stretch; /* Απλώνει το κείμενο σε όλο το πλάτος για να μπουν σωστά οι γραμμές */
         transition: right 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         z-index: 101;
-        padding-top: 0;
+        padding-top: 80px; /* Αφήνει χώρο από πάνω για να μην κρύβονται πίσω από το header/κουμπί */
         box-shadow: -10px 0 35px rgba(0, 0, 0, 0.18);
     }
     
     .nav-links.show {
         right: 0;
+        max-height: 100vh; /* Υποχρεωτικό override του desktop */
+        padding-bottom: 0;
     }
     
     .nav-links a {
-        margin-left: 0;
-        margin-bottom: 32px;
-        font-size: 1.4rem !important;
+        margin: 0;
+        padding: 20px 30px; /* Κενά γύρω από το κείμενο */
+        font-size: 1.3rem !important;
         color: #4b2b4a;
+        text-align: left; /* Στοίχιση αριστερά όπως στη 2η εικόνα */
+        border-bottom: 1px solid rgba(214, 51, 132, 0.2); /* Απαλή ροζ διαχωριστική γραμμή */
+        display: block; /* Υποχρεωτικό για να πιάσει όλο το πλάτος */
+    }
+    
+    /* Κρύβουμε τα εφέ του desktop (τις μικρές γραμμούλες πριν και μετά το κείμενο) στα κινητά */
+    .nav-links a::before, 
+    .nav-links a::after {
+        display: none; 
     }
     
     .site-title {
