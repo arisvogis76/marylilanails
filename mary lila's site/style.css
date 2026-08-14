@@ -554,7 +554,7 @@ footer {
    ========================================== */
 @media (max-width: 768px) {
     header {
-        padding: 15px 10px; /* Μικραίνουμε κι άλλο το padding για να εκμεταλλευτούμε το χώρο */
+        padding: 15px 10px; 
         position: relative; 
         justify-content: center; 
     }
@@ -562,20 +562,20 @@ footer {
     .menu-toggle {
         display: block;
         position: absolute; 
-        right: 15px; /* Καρφωμένο τέρμα δεξιά (αφήνουμε 15px για να μην "κόβεται" από θήκες/κυρτές οθόνες) */
+        right: 0; /* Κολλημένο ακριβώς τέρμα δεξιά */
         top: 50%;
         transform: translateY(-50%); 
         margin: 0;
-        padding: 10px; /* Δίνουμε αόρατο χώρο για να πατιέται πιο εύκολα με το δάχτυλο */
+        padding: 10px 5px 10px 15px; /* Το 5px δεξιά εξασφαλίζει να μην κόβεται στις στρογγυλεμένες οθόνες των νέων κινητών, ενώ φαίνεται κολλητό */
         /* Προσθέτουμε transition για το animation του κουμπιού */
         transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), color 0.3s ease; 
-        z-index: 102; /* Να είναι πάντα πάνω από το μενού */
+        z-index: 102; 
     }
 
     /* Το animation του κουμπιού όταν το πατάς (ή περνάς το ποντίκι) */
     .menu-toggle:active, .menu-toggle:hover {
         transform: translateY(-50%) rotate(90deg) scale(0.85);
-        color: #d63384; /* Αλλάζει ελαφρώς χρώμα */
+        color: #d63384; 
     }
     
     .nav-links {
